@@ -1,0 +1,47 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "server": "ts-node-dev --quiet --exit-child --respawn --files server.ts",
+    "client": "cd client && yarn start",
+    "dev": "concurrently \"yarn server\" \"yarn client\"",
+    "build": "cd client && yarn build",
+    "install-client": "cd client && yarn install",
+    "heroku-postbuild": "yarn install-client && yarn build"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/express-useragent": "^1.0.2",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/morgan": "^1.9.3",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^17.0.25",
+    "@types/nodemailer": "^6.4.4",
+    "@types/uuid": "^8.3.4",
+    "concurrently": "^7.1.0",
+    "morgan": "^1.10.0",
+    "ts-node-dev": "^1.1.8"
+  },
+  "keywords": [],
+  "author": "pakiZBRG",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "chalk": "^4.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-useragent": "^1.0.15",
+    "express-validator": "^6.14.0",
+    "handlebars": "^4.7.7",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.1",
+    "multer": "^1.4.4",
+    "nodemailer": "^6.7.3",
+    "uuid": "^8.3.2"
+  }
+}
