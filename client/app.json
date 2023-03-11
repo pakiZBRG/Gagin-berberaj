@@ -1,0 +1,59 @@
+{
+  "expo": {
+    "name": "gagin-berberaj",
+    "slug": "gagin-berberaj",
+    "scheme": "gagin-berberaj",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "gagin.berberaj",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": [
+          "message",
+          "readdle-spark",
+          "airmail",
+          "ms-outlook",
+          "googlegmail",
+          "inbox-gmail",
+          "ymail",
+          "superhuman",
+          "yandexmail",
+          "fastmail",
+          "protonmail"
+        ]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.gagin_berberaj.client"
+    },
+    "web": {
+      "favicon": "./assets/logo.png"
+    },
+    "plugins": [
+      "react-native-email-link"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "2936603b-a629-4695-bdb6-0185603835fb"
+      }
+    }
+  }
+}

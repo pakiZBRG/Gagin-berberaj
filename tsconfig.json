@@ -9,5 +9,7 @@
   "exclude": [
     "node_modules"
   ],
-  "typeRoots":["./types"]
+  "typeRoots": [
+    "./server/types"
+  ]
 }

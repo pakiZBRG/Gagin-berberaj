@@ -8,8 +8,8 @@ import useragent from "express-useragent";
 import multer from "multer";
 
 import dotenv from 'dotenv'
-import { diskStorage, fileFilter } from "./middleware/imageStorage";
-import { server_start, mongoose_start } from "./middleware/colorCLI";
+import { diskStorage, fileFilter } from "./server/middleware/imageStorage";
+import { server_start, mongoose_start } from "./server/middleware/colorCLI";
 
 dotenv.config()
 
@@ -20,7 +20,7 @@ app.use(cors());
 app.use(useragent.express());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/server/images", express.static(path.join(__dirname, "images")));
 app.use(multer({ storage: diskStorage, fileFilter }).single("image"));
 
 const stream = fs.createWriteStream(path.join(__dirname, "access.log"), {
@@ -35,7 +35,8 @@ mongoose.connect(process.env.MONGO_URI, () =>
 );
 
 // Routes
-app.use("/", require("./routes/user.routes"));
+app.use("/", require("./server/routes/user.routes"));
+app.use("/", require("./server/routes/service.routes"));
 
 // Production Ready
 if (process.env.NODE_ENV === "production") {
