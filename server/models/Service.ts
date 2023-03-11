@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import IService from '../interfaces/service'
+import IService from '../interfaces'
 
 const serviceSchema: Schema = new Schema({
   name: { type: String, required: true },

@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import ILog from "../interfaces/log";
+import ILog from "../interfaces";
 
 const logSchema: Schema = new Schema(
   {

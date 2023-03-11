@@ -37,6 +37,7 @@ mongoose.connect(process.env.MONGO_URI, () =>
 // Routes
 app.use("/", require("./server/routes/user.routes"));
 app.use("/", require("./server/routes/service.routes"));
+app.use("/", require("./server/routes/workingTime.routes"));
 
 // Production Ready
 if (process.env.NODE_ENV === "production") {

@@ -28,12 +28,12 @@ const register = async (req: Request, res: Response) => {
 
   if (req.file) {
     if (req.file.size > 1 * 1024 * 1024) {
-      return res.status(415).json({ error: "Image size too big. 1MB is limit." });
+      return res.status(415).json({ error: "Veličina slike je prevelike. Do 1MB." });
     }
   }
 
   if (password !== confirmPassword) {
-    return res.status(409).json({ error: "Passwords do not match." });
+    return res.status(409).json({ error: "Lozinke se ne podudaraju." });
   }
 
   try {
@@ -42,17 +42,17 @@ const register = async (req: Request, res: Response) => {
 
     if (emailExists && usernameExists) {
       return res.status(409).json([
-        { message: "Email is taken.", field: "email" },
-        { message: "Username is taken.", field: "username" },
+        { message: "Email je zauzet.", field: "email" },
+        { message: "Korisničko ime je zauzeto.", field: "username" },
       ]);
     } else if (emailExists) {
       return res
         .status(409)
-        .json([{ message: "Email is taken.", field: "email" }]);
+        .json([{ message: "Email je zauzet.", field: "email" }]);
     } else if (usernameExists) {
       return res
         .status(409)
-        .json([{ message: "Username is taken.", field: "username" }]);
+        .json([{ message: "Korisničko ime je zauzeto.", field: "username" }]);
     }
   } catch (err) {
     return res.status(500).json({ message: err.message })
@@ -92,7 +92,7 @@ const activate = async (req: Request, res: Response) => {
       await user.save();
       return res
         .status(200)
-        .json({ message: "User is successfully registered." });
+        .json({ message: "Nalog je aktiviran." });
     }
     return res.status(404).json({ user: false });
   } catch (error) {
@@ -129,13 +129,13 @@ const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(406).json({ message: "Input the empty fields." })
+    return res.status(406).json({ message: "Unesite prazna polja." })
   }
 
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "Invalid credentials." })
+      return res.status(404).json({ message: "Nevažeći kredencijali." })
     }
 
     const compare = await bcrypt.compare(password, user.password);
@@ -152,7 +152,7 @@ const login = async (req: Request, res: Response) => {
       await LogInfo(req, res, "login");
       return res.status(200).json({ token });
     }
-    return res.status(404).json({ message: "Invalid credentials" });
+    return res.status(404).json({ message: "Nevažeći kredencijali." });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -170,7 +170,7 @@ const forgotPassword = async (req: Request, res: Response) => {
     if (!user) {
       return res
         .status(404)
-        .json({ message: "User with email doesn't exist." });
+        .json({ message: "Korisnik sa unetim mejlom ne postoji." });
     }
 
     user.passwordToken = uuidv4();
@@ -192,11 +192,11 @@ const forgotPassword = async (req: Request, res: Response) => {
 const resetPassword = async (req: Request, res: Response) => {
   const { password, confirmPassword, token } = req.body;
   if (!password || !confirmPassword) {
-    return res.status(404).json({ message: "Input the passwords and confirm it." })
+    return res.status(404).json({ message: "Unesite lozinku i potvrdite je." })
   }
 
   if (password !== confirmPassword) {
-    return res.status(406).json({ message: "Passwords do not match." })
+    return res.status(406).json({ message: "Lozinke se ne podudaraju." })
   }
 
   try {
@@ -205,7 +205,7 @@ const resetPassword = async (req: Request, res: Response) => {
       const isRepeated = await bcrypt.compare(password, user.password);
       if (isRepeated) {
         return res.status(409).json({
-          message: "Password is already used. Please choose a different one.",
+          message: "Lozinka se već koristi. Molimo izaberite drugu.",
         });
       }
       user.password = await bcrypt.hash(password, 10);
@@ -214,7 +214,7 @@ const resetPassword = async (req: Request, res: Response) => {
       await LogInfo(req, res, "reset-password");
       return res
         .status(200)
-        .json({ message: "Password successfully reseted." });
+        .json({ message: "Lozinka je uspešno ažurirana." });
     }
   } catch (error) {
     return res.status(500).json({ message: error.message });

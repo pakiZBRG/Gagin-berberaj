@@ -27,6 +27,9 @@ module.exports = {
         'bp-red': '#E24C3B',
         'bp-beige': '#FBF3EF',
         'bp-blue': '#0088E0',
+      },
+      textColor: {
+        'bp-red': '#E24C3B',
       }
     },
   },
