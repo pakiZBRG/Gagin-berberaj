@@ -41,7 +41,7 @@ const PickDate = ({ previousSlide, style, nextSlide }) => {
 
   return (
     <View className='flex flex-1 bg-[#fafafa]' style={{ width }}>
-      <View className='flex-initial px-8 py-2 flex flex-row items-center justify-between'>
+      <View className='flex-initial px-8 py-3 flex flex-row items-center justify-between'>
         <Pressable
           onPress={previousSlide}
           className='text-zinc-200 flex items-center p-1 flex-row justify-center'
@@ -52,7 +52,7 @@ const PickDate = ({ previousSlide, style, nextSlide }) => {
           Izaberite vreme
         </Text>
       </View>
-      <View className='flex-1 pt-4 px-8' style={style.shadow}>
+      <View className='flex-1 pt-4 px-8 border-t'>
         <PagerView className='flex-1'>
           {dates.map((week, i) => (
             <View key={i}>
@@ -83,7 +83,7 @@ const PickDate = ({ previousSlide, style, nextSlide }) => {
           <Text className='font-monsMedium text-xl'>{choosenDate}</Text>
         </View>
       </View>
-      <View className='flex-initial items-center p-2'>
+      <View className='flex-initial items-center p-2 border-t'>
         <Pressable
           android_ripple={{ color: '#fdfaf8' }}
           style={{ ...style.shadow }}

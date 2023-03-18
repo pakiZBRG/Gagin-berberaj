@@ -26,7 +26,7 @@ const PickService = ({ previousSlide, style, nextSlide }) => {
 
   return (
     <View className='flex flex-1 bg-[#fafafa]' style={{ width }}>
-      <View className='flex-initial px-8 py-2 flex flex-row items-center justify-between'>
+      <View className='flex-initial px-8 py-3 flex flex-row items-center justify-between'>
         <Pressable
           onPress={previousSlide}
           className='text-zinc-200 flex items-center p-1 flex-row justify-center'
@@ -37,7 +37,7 @@ const PickService = ({ previousSlide, style, nextSlide }) => {
           Izaberite uslugu
         </Text>
       </View>
-      <View className='flex-1 pt-4' style={style.shadow}>
+      <View className='flex-1 border-t'>
         <FlatList
           data={services}
           numColumns={2}
@@ -57,7 +57,7 @@ const PickService = ({ previousSlide, style, nextSlide }) => {
         />
       </View>
       {selectedServiceId ?
-        <View className='flex-initial items-center p-3'>
+        <View className='flex-initial items-center p-3 border-t'>
           <Pressable
             android_ripple={{ color: '#fdfaf8' }}
             style={{ ...style.shadow, opacity: Boolean(!selectedServiceId) ? 0.4 : 1 }}

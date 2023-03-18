@@ -46,7 +46,7 @@ export default Item
 
 const style = {
   shadow: {
-    shadowColor: "#111111",
+    shadowColor: "#111",
     shadowOffset: {
       width: 0,
       height: 1,
